@@ -8,6 +8,7 @@ class Secret(object):
     SECRET_FILE_NAME = 'secrets.json'
 
     SECRET_KEY = "secret_key"
+    ENVIRONMENT = "environment"
 
     # private member
     __secrets = None

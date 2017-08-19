@@ -3,7 +3,12 @@ import os
 import sys
 
 if __name__ == "__main__":
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "my.settings")
+
+    from common.secret import Secret
+    ROOT_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    secret = Secret(ROOT_DIR)
+
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "my.settings." + secret.get(Secret.ENVIRONMENT))
     try:
         from django.core.management import execute_from_command_line
     except ImportError:
