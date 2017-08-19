@@ -1,5 +1,5 @@
 .idea
 venv
-secret.json
+secrets.json
 db.sqlite3
 __pycache__
