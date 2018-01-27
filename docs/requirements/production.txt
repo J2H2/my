@@ -1,3 +1,1 @@
 -r base.txt # base.txt requirement
-
-django-debug-toolbar==1.9.1
