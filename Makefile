@@ -6,9 +6,9 @@ help:
 
 all: install-dev run
 
-install: python-package-install
+install: python-package-install settings
 
-install-dev: python-package-install
+install-dev: python-package-install-dev settings
 
 
 # install
@@ -17,6 +17,9 @@ python-package-install:
 
 python-package-install-dev:
 	@pip3 install -r docs/requirements/development.txt
+
+settings:
+	@cp docs/dev/settings/secrets.json ./secrets.json && python3.6 src/script/convert_secret_file.py
 
 
 # run

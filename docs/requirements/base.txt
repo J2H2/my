@@ -1,1 +1,2 @@
 Django==2.0.1
+pycrypto==2.6.1

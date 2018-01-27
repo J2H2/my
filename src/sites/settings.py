@@ -1,12 +1,15 @@
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from infra.configure.constants import SecretKeyName
+from lib.secret.secret import Secret
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(BASE_DIR)
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'm45@ih$f7o5%-y+=-=x*f((lryn1_$21sx15kqri8-&++4)#a$'
+SECRET_KEY = Secret().get(SecretKeyName.SECRET_KEY)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -65,6 +68,14 @@ DATABASES = {
 }
 
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': Secret().get(SecretKeyName.MEMCACHED_LOCATION),
+    }
+}
+
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -80,10 +91,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LANGUAGE_CODE = 'ko-kr'
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
