@@ -4,8 +4,6 @@ services:
   my:
     image: jun2org/docker:my
     container_name: my
-    volumes:
-      - .:/htdocs/www
     ports:
       - 80:80
       - 443:443
