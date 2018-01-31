@@ -12,9 +12,9 @@ ROOT_DIR = os.path.dirname(BASE_DIR)
 SECRET_KEY = Secret().get(SecretKeyName.SECRET_KEY)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['jun2.org', 'www.jun2.org', 'my.jun2.org']
 
 
 # Application definition
