@@ -2,8 +2,11 @@
 import os
 import sys
 
+from infra.configure.constants import SecretKeyName
+from lib.secret.secret import Secret
+
 if __name__ == "__main__":
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "sites.settings")
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'sites.settings.' + Secret().get(SecretKeyName.ENVIRONMENT))
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
