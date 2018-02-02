@@ -3,3 +3,5 @@ db.sqlite3
 /.idea
 /secrets.json
 /enc_secrets.json
+/prod_enc_secrets.json
+__pycache__

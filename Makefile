@@ -24,6 +24,8 @@ python-package-install-dev:
 settings:
 	@cp docs/dev/settings/secrets.json ./secrets.json && python3.6 src/script/convert_secret_file.py
 
+static:
+	@python3.6 src/manage.py collectstatic
 
 
 # run
