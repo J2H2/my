@@ -53,12 +53,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'sites.wsgi.application'
 
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(ROOT_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'product',
+        'USER': Secret().get(SecretKeyName.DEFAULT_DB_ACCOUNT),
+        'PASSWORD': Secret().get(SecretKeyName.DEFAULT_DB_PASSWORD),
+        'HOST': Secret().get(SecretKeyName.DEFAULT_DB_HOST),
+        'PORT': '3307',
+        'CONN_MAX_AGE': 0,
+        'OPTIONS': {
+            'sql_mode': 'STRICT_TRANS_TABLES',
+            'charset': 'utf8',
+        }
+    },
 }
 
 
