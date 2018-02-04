@@ -36,4 +36,4 @@ run-server:
 
 # docker
 docker-up:
-	@docker-compose up
+	@docker-compose up --build
