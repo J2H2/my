@@ -53,6 +53,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'sites.wsgi.application'
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -60,7 +61,7 @@ DATABASES = {
         'USER': Secret().get(SecretKeyName.DEFAULT_DB_ACCOUNT),
         'PASSWORD': Secret().get(SecretKeyName.DEFAULT_DB_PASSWORD),
         'HOST': Secret().get(SecretKeyName.DEFAULT_DB_HOST),
-        'PORT': '3307',
+        'PORT': Secret().get(SecretKeyName.DEFAULT_DB_PORT),
         'CONN_MAX_AGE': 0,
         'OPTIONS': {
             'sql_mode': 'STRICT_TRANS_TABLES',
@@ -68,7 +69,6 @@ DATABASES = {
         }
     },
 }
-
 
 CACHES = {
     'default': {
