@@ -6,7 +6,7 @@ services:
     container_name: my-mariadb
     restart: always
     ports:
-      - 3306:3307
+      - 3306:3306
     volumes:
       - ./.tmp/mysql:/var/lib/mysql
     environment:
@@ -18,13 +18,16 @@ services:
   my:
     image: jun2org/docker:my
     container_name: my
+    volumes:
+      - ./src:/htdocs/www/src
+      - ./docs:/htdocs/www/docs
+      - ./enc_secrets.json:/htdocs/www/enc_secrets.json
     ports:
       - 80:80
       - 443:443
-      #- 11211:11211
-    volumes:
-      - .:/htdocs/www
-    command: ['./docs/docker/wait_for_it.sh', 'mysqladmin ping -h mariadb -u root -proot', '/usr/bin/supervisord']
+      - 11211:11211
+    entrypoint: ./docs/docker/entrypoint.sh
+    command: ['./docs/docker/wait_for_mariadb.sh', '/usr/bin/supervisord']
     depends_on:
       - mariadb
     links:

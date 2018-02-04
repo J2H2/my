@@ -1,7 +1,6 @@
 #!/bin/bash
 
-check_command="$1"
-shift
+check_command="mysqladmin ping -h mariadb --port=3306 -u root -proot"
 command="$@"
 
 while true; do
