@@ -22,8 +22,8 @@ services:
       - ./src:/htdocs/www/src
       - ./docs:/htdocs/www/docs
       - ./enc_secrets.json:/htdocs/www/enc_secrets.json
+      - ./docs/dev/nginx/my.conf:/etc/nginx/conf.d/my.conf
     ports:
-      - 80:80
       - 443:443
       - 11211:11211
     entrypoint: ./docs/docker/entrypoint.sh
