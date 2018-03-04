@@ -30,6 +30,7 @@ INSTALLED_APPS = [
 
     'apps.domains.home.apps.HomeConfig',
     'apps.domains.account.apps.AccountConfig',
+    'apps.domains.book.apps.BookConfig',
 ]
 
 MIDDLEWARE = [
@@ -183,3 +184,7 @@ LOGGING = {
         },
     },
 }
+
+
+NAVER_OPEN_API_CLIENT_ID = Secret().get(SecretKeyName.NAVER_OPEN_API_CLIENT_ID)
+NAVER_OPEN_API_CLIENT_SECRET = Secret().get(SecretKeyName.NAVER_OPEN_API_CLIENT_SECRET)
