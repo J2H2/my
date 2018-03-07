@@ -3,6 +3,8 @@ from datetime import date
 
 def convert_to_date_from_8digit(date_string: str):
     year = int(date_string[0:4])
+    if year is 0:
+        year = 1
 
     month = int(date_string[4:6])
     if month is 0:
