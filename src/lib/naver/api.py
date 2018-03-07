@@ -21,10 +21,13 @@ class RequestBalancer:
     def ready(cls):
         timestamp = int(time.time())
 
+        if cls._count.get(timestamp, None) is None:
+            cls._count[timestamp] = 0
+        cls._count[timestamp] += 1
+
         if cls._count[timestamp] > ALLOWED_REQ_COUNT_IN_SEC:
             sleep(0.5)
             cls._count.clear()
-        cls._count[timestamp] += 1
 
 
 def search_book(query: str):
