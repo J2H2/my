@@ -13,6 +13,9 @@ class SecretKeyName:
 
     SENTRY_DSN = 'sentry_dsn'
 
+    NAVER_OPEN_API_CLIENT_ID = 'naver_open_api_client_id'
+    NAVER_OPEN_API_CLIENT_SECRET = 'naver_open_api_client_secret'
+
 
 class Environment:
     DEV = 'development'
