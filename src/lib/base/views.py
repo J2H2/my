@@ -1,6 +1,6 @@
 from rest_framework.response import Response
 
-from infra.networks.api_status_code import StatusCode, ApiStatusCodes
+from infra.networks.api_status_code import ApiStatusCodes, StatusCode
 from infra.networks.statue_code import ResponseCode
 from lib.base.exceptions import ErrorException
 
@@ -24,14 +24,14 @@ class ApiResponseMixin:
         return Response(data, status=response_code.get_status(), headers=headers)
 
     @staticmethod
-    def make_response_code(status: StatusCode, message: str=None) -> ResponseCode:
+    def make_response_code(status: StatusCode, message: str = None) -> ResponseCode:
         return ResponseCode(status_code=status, message=message)
 
     @classmethod
-    def success_response(cls, data=None, response_code: ResponseCode=None) -> Response:
+    def success_response(cls, data=None, response_code: ResponseCode = None) -> Response:
         if response_code is None:
             response_code = ResponseCode(ApiStatusCodes.C_200_OK)
-        return cls._make_response(response_code, data=data,)
+        return cls._make_response(response_code, data=data, )
 
     @classmethod
     def fail_response(cls, response_code: ResponseCode, data=None) -> Response:

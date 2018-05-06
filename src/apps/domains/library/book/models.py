@@ -1,9 +1,9 @@
-from apps.domains.library.book.constants import OwnStatus, ReadStatus
 from django.db import models
 from django.utils import timezone
 
 from apps.domains.account.models import User
 from apps.domains.book.models import Book
+from apps.domains.library.book.constants import OwnStatus, ReadStatus
 from lib.base.models import BaseModel
 
 

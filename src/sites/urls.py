@@ -14,4 +14,3 @@ urlpatterns = [
 ] + [
     path('api/library/books/', include(book_urls, namespace='library_book')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-

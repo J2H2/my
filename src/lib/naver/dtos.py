@@ -3,7 +3,7 @@ from typing import Type
 
 from lib.naver.exceptions import InvalidBookData, InvalidItemData
 from lib.utils.book import validate_isbn
-from lib.utils.date import convert_to_date_from_8digit, convert_6digit_to_8digit, convert_4digit_to_8digit
+from lib.utils.date import convert_4digit_to_8digit, convert_6digit_to_8digit, convert_to_date_from_8digit
 from lib.utils.string import clean_tag
 
 

@@ -7,7 +7,6 @@ from apps.domains.library.book.repositories import LibraryBookRepository
 from apps.domains.library.book.serializers import LibraryBookListReqSerializer, LibraryBookSerializer
 from apps.domains.library.book.services.library_book_own_service import LibraryBookOwnService
 from apps.domains.library.book.services.library_book_read_service import LibraryBookReadService
-
 from infra.networks.api_status_code import ApiStatusCodes
 from lib.base.views import ApiResponseMixin
 

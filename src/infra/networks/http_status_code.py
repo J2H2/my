@@ -1,4 +1,3 @@
-
 class HttpStatusCodes:
     # General Http Status Code
 

@@ -7,10 +7,8 @@ from lib.secret.secret import Secret
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 ROOT_DIR = os.path.dirname(BASE_DIR)
 
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = Secret().get(SecretKeyName.SECRET_KEY)
-
 
 # Application definition
 INSTALLED_APPS = [
@@ -65,7 +63,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'sites.wsgi.application'
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -88,7 +85,6 @@ CACHES = {
         'LOCATION': Secret().get(SecretKeyName.MEMCACHED_LOCATION),
     }
 }
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -120,7 +116,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
@@ -192,7 +187,6 @@ LOGGING = {
         },
     },
 }
-
 
 NAVER_OPEN_API_CLIENT_ID = Secret().get(SecretKeyName.NAVER_OPEN_API_CLIENT_ID)
 NAVER_OPEN_API_CLIENT_SECRET = Secret().get(SecretKeyName.NAVER_OPEN_API_CLIENT_SECRET)

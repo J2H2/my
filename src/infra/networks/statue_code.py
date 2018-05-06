@@ -1,6 +1,5 @@
-
 class StatusCode:
-    def __init__(self, status: int, code: str=None):
+    def __init__(self, status: int, code: str = None):
         self.status = status
         self.code = code
 
@@ -9,7 +8,7 @@ class StatusCode:
 
 
 class ResponseCode:
-    def __init__(self, status_code: StatusCode, message: str=None):
+    def __init__(self, status_code: StatusCode, message: str = None):
         self.status_code = status_code
         self.message = message
 

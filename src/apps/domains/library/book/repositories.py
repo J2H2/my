@@ -9,4 +9,4 @@ class LibraryBookRepository(BaseRepository):
 
     @classmethod
     def find_by_user(cls, user, offset, limit) -> List[LibraryBook]:
-        return LibraryBook.objects.filter(user=user)[offset:offset+limit]
+        return LibraryBook.objects.filter(user=user)[offset:offset + limit]

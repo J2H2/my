@@ -1,5 +1,5 @@
-from .statue_code import StatusCode
 from .http_status_code import HttpStatusCodes
+from .statue_code import StatusCode
 
 
 class DefaultApiHttpCodes:
