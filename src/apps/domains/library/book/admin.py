@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from apps.domains.user_book.models import UserBook
+from apps.domains.library.book.models import LibraryBook
 from lib.base.admin import BaseModelAdmin
 
 
-class UserBookAdmin(BaseModelAdmin):
+class LibraryBookAdmin(BaseModelAdmin):
     fieldsets = (
         (None, {'fields': ('id', 'user',)}),
         ('소유 정보', {'fields': ('own_status', 'own_date',)}),
@@ -18,4 +18,4 @@ class UserBookAdmin(BaseModelAdmin):
     search_fields = ('book', 'user',)
 
 
-admin.site.register(UserBook, UserBookAdmin)
+admin.site.register(LibraryBook, LibraryBookAdmin)

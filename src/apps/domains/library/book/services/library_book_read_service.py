@@ -1,9 +1,9 @@
 from apps.domains.book.models import Book
 from apps.domains.book.services.book_service import BookService
-from apps.domains.user_book.models import UserBook
+from apps.domains.library.book.models import LibraryBook
 
 
-class UserBookReadService:
+class LibraryBookReadService:
     @classmethod
     def change_read_status(cls, user, book_id: int, read_status: int):
         book = BookService.get_book(book_id)
@@ -16,6 +16,6 @@ class UserBookReadService:
 
     @classmethod
     def _change_read_status(cls, user, book: Book, read_status: int):
-        user_book, _ = UserBook.objects.get_or_create(user=user, book=book)
+        user_book, _ = LibraryBook.objects.get_or_create(user=user, book=book)
         user_book.change_read_status(read_status)
         user_book.save()

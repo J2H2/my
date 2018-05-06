@@ -1,11 +1,11 @@
 from django.urls import path
 
-from apps.domains.user_book.constants import OwnStatus, ReadStatus
+from apps.domains.library.book.constants import OwnStatus, ReadStatus
 from . import views
 
-app_name = 'apps.domains.user_book'
+app_name = 'apps.domains.library.book'
 urlpatterns = [
-    path('', views.UserBooksView.as_view(), name='index'),
+    path('', views.LibraryBookListView.as_view(), name='index'),
 
     path('<int:book_id>/not-own/', views.OwnView.as_view(), name='not-own', kwargs={'own_status': OwnStatus.NONE}),
     path('<int:book_id>/want/', views.OwnView.as_view(), name='want', kwargs={'own_status': OwnStatus.WANT}),

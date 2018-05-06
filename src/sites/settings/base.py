@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     'apps.domains.home.apps.HomeConfig',
     'apps.domains.account.apps.AccountConfig',
     'apps.domains.book.apps.BookConfig',
-    'apps.domains.user_book.apps.UserBookConfig',
+    'apps.domains.library.book.apps.LibraryBookConfig',
 ]
 
 MIDDLEWARE = [

@@ -1,15 +1,13 @@
-from datetime import datetime
-
+from apps.domains.library.book.constants import OwnStatus, ReadStatus
 from django.db import models
 from django.utils import timezone
 
 from apps.domains.account.models import User
 from apps.domains.book.models import Book
-from apps.domains.user_book.constants import OwnStatus, ReadStatus
 from lib.base.models import BaseModel
 
 
-class UserBook(BaseModel):
+class LibraryBook(BaseModel):
     user = models.ForeignKey(User, null=False, on_delete=models.PROTECT, related_name='user_1', verbose_name='유저', )
 
     book = models.ForeignKey(Book, null=False, on_delete=models.PROTECT, related_name='user_book_1', verbose_name='책', )
@@ -21,7 +19,7 @@ class UserBook(BaseModel):
     read_date = models.DateTimeField(null=True, verbose_name='읽은 날')
 
     class Meta:
-        db_table = 'user_book'
+        db_table = 'library_book'
         verbose_name = '유저 책'
         verbose_name_plural = '유저 첵 리스트'
 

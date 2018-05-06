@@ -3,29 +3,30 @@ from django.utils.decorators import method_decorator
 from rest_framework.views import APIView
 
 from apps.domains.book.models import Book
-from apps.domains.user_book.repositories import UserBookRepository
-from apps.domains.user_book.serializers import UserBookListReqSerializer, UserBookSerializer
-from apps.domains.user_book.services.user_book_own_service import UserBookOwnService
-from apps.domains.user_book.services.user_book_read_service import UserBookReadService
+from apps.domains.library.book.repositories import LibraryBookRepository
+from apps.domains.library.book.serializers import LibraryBookListReqSerializer, LibraryBookSerializer
+from apps.domains.library.book.services.library_book_own_service import LibraryBookOwnService
+from apps.domains.library.book.services.library_book_read_service import LibraryBookReadService
+
 from infra.networks.api_status_code import ApiStatusCodes
 from lib.base.views import ApiResponseMixin
 
 
-class UserBooksView(ApiResponseMixin, APIView):
+class LibraryBookListView(ApiResponseMixin, APIView):
     @method_decorator(login_required)
     def get(self, request):
         user = request.user
 
-        serializer = UserBookListReqSerializer(data=request.query_params)
+        serializer = LibraryBookListReqSerializer(data=request.query_params)
         if not serializer.is_valid():
             code = self.make_response_code(ApiStatusCodes.C_400_BAD_REQUEST)
             return self.fail_response(response_code=code, data=serializer.errors)
 
         offset, limit = serializer.get_paginator_params()
-        user_books = UserBookRepository.find_by_user(user, offset, limit)
+        user_books = LibraryBookRepository.find_by_user(user, offset, limit)
 
         data = {
-            'user_books': UserBookSerializer(user_books, many=True).data,
+            'user_books': LibraryBookSerializer(user_books, many=True).data,
         }
 
         return self.success_response(data=data)
@@ -37,7 +38,7 @@ class ReadView(ApiResponseMixin, APIView):
         user = request.user
 
         try:
-            UserBookReadService.change_read_status(user, book_id, read_status)
+            LibraryBookReadService.change_read_status(user, book_id, read_status)
 
         except Book.DoesNotExist:
             code = self.make_response_code(ApiStatusCodes.C_404_NOT_FOUND, message='The book does not exist.')
@@ -52,7 +53,7 @@ class OwnView(ApiResponseMixin, APIView):
         user = request.user
 
         try:
-            UserBookOwnService.change_own_status(user, book_id, own_status)
+            LibraryBookOwnService.change_own_status(user, book_id, own_status)
 
         except Book.DoesNotExist:
             code = self.make_response_code(ApiStatusCodes.C_404_NOT_FOUND, message='The book does not exist.')
@@ -67,7 +68,7 @@ class ISBNReadView(ApiResponseMixin, APIView):
         user = request.user
 
         try:
-            UserBookReadService.change_read_status_by_isbn(user, isbn, read_status)
+            LibraryBookReadService.change_read_status_by_isbn(user, isbn, read_status)
 
         except Book.DoesNotExist:
             code = self.make_response_code(ApiStatusCodes.C_404_NOT_FOUND, message='The book does not exist.')
@@ -82,7 +83,7 @@ class ISBNOwnView(ApiResponseMixin, APIView):
         user = request.user
 
         try:
-            UserBookOwnService.change_own_status_by_isbn(user, isbn, own_status)
+            LibraryBookOwnService.change_own_status_by_isbn(user, isbn, own_status)
 
         except Book.DoesNotExist:
             code = self.make_response_code(ApiStatusCodes.C_404_NOT_FOUND, message='The book does not exist.')
