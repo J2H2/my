@@ -21,6 +21,9 @@ python-package-install:
 python-package-install-dev:
 	@pip3 install -r docs/requirements/development.txt
 
+migrate:
+	@python3.6 src/manage.py migrate
+
 settings:
 	@cp docs/dev/settings/secrets.json ./secrets.json && python3.6 src/script/convert_secret_file.py
 
@@ -31,7 +34,6 @@ static:
 # run
 run-server:
 	@python3.6 src/manage.py runserver
-
 
 
 # docker
