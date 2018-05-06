@@ -6,7 +6,7 @@ from apps.domains.library.book.models import LibraryBook
 class LibraryBookReadService:
     @classmethod
     def change_read_status(cls, user, book_id: int, read_status: int):
-        book = BookService.get_book(book_id)
+        book = BookService.get_book_by_id(book_id)
         cls._change_read_status(user, book, read_status)
 
     @classmethod

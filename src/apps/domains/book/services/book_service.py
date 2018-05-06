@@ -5,7 +5,7 @@ from apps.domains.book.services.search_book_service import SearchBookService
 
 class BookService:
     @classmethod
-    def get_book(cls, book_id: int) -> Book:
+    def get_book_by_id(cls, book_id: int) -> Book:
         return BookRepository.get_by_id(book_id)
 
     @classmethod

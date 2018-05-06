@@ -6,7 +6,7 @@ from apps.domains.library.book.models import LibraryBook
 class LibraryBookOwnService:
     @classmethod
     def change_own_status(cls, user, book_id: int, own_status: int):
-        book = BookService.get_book(book_id)
+        book = BookService.get_book_by_id(book_id)
         cls._change_own_status(user, book, own_status)
 
     @classmethod

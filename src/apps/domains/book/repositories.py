@@ -12,3 +12,7 @@ class BookRepository(BaseRepository):
     @classmethod
     def get_by_isbn(cls, isbn: int) -> Book:
         return Book.objects.get(isbn=isbn)
+
+    @classmethod
+    def get_by_isbn(cls, isbn: int) -> Book:
+        return Book.objects.get(isbn=isbn)
