@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'raven.contrib.django.raven_compat',
+    'rest_framework',
 
     'allauth',
     'allauth.account',
