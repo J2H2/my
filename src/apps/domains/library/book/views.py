@@ -7,6 +7,7 @@ from apps.domains.library.book.repositories import LibraryBookRepository
 from apps.domains.library.book.serializers import LibraryBookListReqSerializer, LibraryBookSerializer
 from apps.domains.library.book.services.library_book_own_service import LibraryBookOwnService
 from apps.domains.library.book.services.library_book_read_service import LibraryBookReadService
+from apps.domains.library.book.services.library_book_service import LibraryBookService
 from infra.networks.api_status_code import ApiStatusCodes
 from lib.base.views import ApiResponseMixin
 
@@ -29,6 +30,36 @@ class LibraryBookListView(ApiResponseMixin, APIView):
         }
 
         return self.success_response(data=data)
+
+
+class LibraryBookByBookIdView(ApiResponseMixin, APIView):
+    @method_decorator(login_required)
+    def get(self, request, book_id: int):
+        user = request.user
+
+        try:
+            LibraryBookService.get_by_user_and_book_id(user, book_id)
+
+        except Book.DoesNotExist:
+            code = self.make_response_code(ApiStatusCodes.C_404_NOT_FOUND, message='The book does not exist.')
+            return self.fail_response(response_code=code)
+
+        return self.success_response()
+
+
+class LibraryBookByIsbnView(ApiResponseMixin, APIView):
+    @method_decorator(login_required)
+    def get(self, request, isbn: int):
+        user = request.user
+
+        try:
+            LibraryBookService.get_by_user_and_isbn(user, isbn)
+
+        except Book.DoesNotExist:
+            code = self.make_response_code(ApiStatusCodes.C_404_NOT_FOUND, message='The book does not exist.')
+            return self.fail_response(response_code=code)
+
+        return self.success_response()
 
 
 class ReadView(ApiResponseMixin, APIView):
@@ -61,7 +92,7 @@ class OwnView(ApiResponseMixin, APIView):
         return self.success_response()
 
 
-class ISBNReadView(ApiResponseMixin, APIView):
+class IsbnReadView(ApiResponseMixin, APIView):
     @method_decorator(login_required)
     def post(self, request, isbn: int, read_status: int):
         user = request.user
@@ -76,7 +107,7 @@ class ISBNReadView(ApiResponseMixin, APIView):
         return self.success_response()
 
 
-class ISBNOwnView(ApiResponseMixin, APIView):
+class IsbnOwnView(ApiResponseMixin, APIView):
     @method_decorator(login_required)
     def post(self, request, isbn: int, own_status: int):
         user = request.user

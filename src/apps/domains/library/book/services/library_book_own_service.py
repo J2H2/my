@@ -16,6 +16,6 @@ class LibraryBookOwnService:
 
     @classmethod
     def _change_own_status(cls, user, book: Book, own_status: int):
-        user_book, _ = LibraryBook.objects.get_or_create(user=user, book=book)
-        user_book.change_own_status(own_status)
-        user_book.save()
+        library_book, _ = LibraryBook.objects.get_or_create(user=user, book=book)
+        library_book.change_own_status(own_status)
+        library_book.save()

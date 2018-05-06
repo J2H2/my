@@ -16,6 +16,6 @@ class LibraryBookReadService:
 
     @classmethod
     def _change_read_status(cls, user, book: Book, read_status: int):
-        user_book, _ = LibraryBook.objects.get_or_create(user=user, book=book)
-        user_book.change_read_status(read_status)
-        user_book.save()
+        library_book, _ = LibraryBook.objects.get_or_create(user=user, book=book)
+        library_book.change_read_status(read_status)
+        library_book.save()
