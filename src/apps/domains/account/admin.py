@@ -7,9 +7,9 @@ from .models import User
 class UserAdmin(BaseModelAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('개인 정보', {'fields': ('email',)}),
-        ('상태 정보', {'fields': ('is_active', 'is_staff', 'is_superuser')}),
-        ('관련 날짜', {'fields': ('last_login', 'created', 'last_modified',)}),
+        ('User info', {'fields': ('email',)}),
+        ('Status', {'fields': ('is_active', 'is_staff', 'is_superuser')}),
+        ('Related dates', {'fields': ('last_login', 'created', 'last_modified',)}),
     )
     readonly_fields = ('last_login', 'created', 'last_modified',)
     list_display = (
@@ -21,16 +21,16 @@ class UserAdmin(BaseModelAdmin):
     filter_horizontal = ('groups', 'user_permissions',)
 
     def print_group(self, obj) -> str:
-        return ','.join([g.name for g in obj.groups.all()]) if obj.groups.count() else '지정된 그룹이 없습니다.'
+        return ','.join([g.name for g in obj.groups.all()]) if obj.groups.count() else 'There is no groups.'
 
-    print_group.short_description = '그룹'
+    print_group.short_description = 'Group'
 
     def print_user_permissions(self, obj) -> str:
         return ','.join(
             [g.name for g in obj.user_permissions.all()]
-        ) if obj.user_permissions.count() else '지정된 권한이 없습니다.'
+        ) if obj.user_permissions.count() else 'There is no permissions.'
 
-    print_user_permissions.short_description = '권한'
+    print_user_permissions.short_description = 'Permissions'
 
 
 admin.site.register(User, UserAdmin)

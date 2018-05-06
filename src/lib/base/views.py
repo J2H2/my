@@ -12,7 +12,7 @@ class ApiResponseMixin:
             data = {}
 
         if 'message' in data or 'code' in data:
-            raise ErrorException('데이터 필드명 중 예약어가 포함되어 있습니다.')
+            raise ErrorException('Data field names contain reserved words.')
 
         if response_code.has_message():
             data['message'] = response_code.get_message()

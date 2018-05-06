@@ -6,19 +6,19 @@ from lib.base.models import BaseModel
 class Book(BaseModel):
     isbn = models.BigIntegerField(unique=True, verbose_name='ISBN', )
 
-    title = models.TextField(verbose_name='제목', )
-    authors = models.TextField(verbose_name='작가들', )
-    publisher = models.TextField(verbose_name='출판사', )
-    pub_date = models.DateField(verbose_name='출판일', )
+    title = models.TextField(verbose_name='Title', )
+    authors = models.TextField(verbose_name='authors', )
+    publisher = models.TextField(verbose_name='publisher', )
+    pub_date = models.DateField(verbose_name='publish date', )
 
-    cover_l = models.TextField(verbose_name='커버 Large', )
-    cover_s = models.TextField(verbose_name='커버 Small', )
+    cover_l = models.TextField(verbose_name='Cover Large', )
+    cover_s = models.TextField(verbose_name='Cover Small', )
 
-    description = models.TextField(verbose_name='설명', )
+    description = models.TextField(verbose_name='Description', )
 
-    price = models.IntegerField(verbose_name='가격', )
+    price = models.IntegerField(verbose_name='Price', )
 
     class Meta:
         db_table = 'book'
-        verbose_name = '책'
-        verbose_name_plural = '첵 리스트'
+        verbose_name = 'Book'
+        verbose_name_plural = 'Book list'

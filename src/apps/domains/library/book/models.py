@@ -8,20 +8,20 @@ from lib.base.models import BaseModel
 
 
 class LibraryBook(BaseModel):
-    user = models.ForeignKey(User, null=False, on_delete=models.PROTECT, related_name='user_1', verbose_name='유저', )
+    user = models.ForeignKey(User, null=False, on_delete=models.PROTECT, related_name='user_1', verbose_name='User', )
 
-    book = models.ForeignKey(Book, null=False, on_delete=models.PROTECT, related_name='user_book_1', verbose_name='책', )
+    book = models.ForeignKey(Book, null=False, on_delete=models.PROTECT, related_name='user_book_1', verbose_name='Book', )
 
-    own_status = models.IntegerField(choices=OwnStatus.get_choices(), default=OwnStatus.NONE, verbose_name='소유 상태', )
-    own_date = models.DateTimeField(null=True, verbose_name='구매일')
+    own_status = models.IntegerField(choices=OwnStatus.get_choices(), default=OwnStatus.NONE, verbose_name='Own status', )
+    own_date = models.DateTimeField(null=True, verbose_name='own date')
 
-    read_status = models.IntegerField(choices=ReadStatus.get_choices(), default=ReadStatus.NONE, verbose_name='읽기 상태', )
-    read_date = models.DateTimeField(null=True, verbose_name='읽은 날')
+    read_status = models.IntegerField(choices=ReadStatus.get_choices(), default=ReadStatus.NONE, verbose_name='Read status', )
+    read_date = models.DateTimeField(null=True, verbose_name='read date')
 
     class Meta:
         db_table = 'library_book'
-        verbose_name = '유저 책'
-        verbose_name_plural = '유저 첵 리스트'
+        verbose_name = 'User book library'
+        verbose_name_plural = 'User book library list'
 
     def change_own_status(self, own_status: int):
         self.own_status = own_status
