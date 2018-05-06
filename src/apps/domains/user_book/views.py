@@ -3,8 +3,8 @@ from django.utils.decorators import method_decorator
 from rest_framework.views import APIView
 
 from apps.domains.book.models import Book
-from apps.domains.user_book.models import UserBook
-from apps.domains.user_book.serializers import UserBookSerializer
+from apps.domains.user_book.repository import UserBookRepository
+from apps.domains.user_book.serializers import UserBookListReqSerializer, UserBookSerializer
 from apps.domains.user_book.services.user_book_own_service import UserBookOwnService
 from apps.domains.user_book.services.user_book_read_service import UserBookReadService
 from infra.networks.api_status_code import ApiStatusCodes
@@ -16,7 +16,13 @@ class UserBooksView(ApiResponseMixin, APIView):
     def get(self, request):
         user = request.user
 
-        user_books = UserBook.objects.filter(user=user)
+        serializer = UserBookListReqSerializer(data=request.query_params)
+        if not serializer.is_valid():
+            code = self.make_response_code(ApiStatusCodes.C_400_BAD_REQUEST)
+            return self.fail_response(response_code=code, data=serializer.errors)
+
+        offset, limit = serializer.get_paginator_params()
+        user_books = UserBookRepository.find_by_user(user, offset, limit)
 
         data = {
             'user_books': UserBookSerializer(user_books, many=True).data,
