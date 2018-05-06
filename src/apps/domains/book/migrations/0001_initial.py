@@ -15,8 +15,6 @@ class Migration(migrations.Migration):
             name='Book',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(auto_now_add=True, verbose_name='등록일')),
-                ('last_modified', models.DateTimeField(auto_now=True, verbose_name='수정일')),
                 ('isbn', models.CharField(max_length=13, unique=True, verbose_name='ISBN')),
                 ('title', models.TextField(verbose_name='제목')),
                 ('authors', models.TextField(verbose_name='작가들')),
@@ -26,6 +24,8 @@ class Migration(migrations.Migration):
                 ('cover_s', models.TextField(verbose_name='커버 Small')),
                 ('description', models.TextField(verbose_name='설명')),
                 ('price', models.IntegerField(verbose_name='가격')),
+                ('created', models.DateTimeField(auto_now_add=True, verbose_name='등록일')),
+                ('last_modified', models.DateTimeField(auto_now=True, verbose_name='수정일')),
             ],
             options={
                 'verbose_name': '책',
