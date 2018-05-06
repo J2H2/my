@@ -29,6 +29,7 @@ class UserAdmin(BaseModelAdmin):
         return ','.join(
             [g.name for g in obj.user_permissions.all()]
         ) if obj.user_permissions.count() else '지정된 권한이 없습니다.'
+
     print_user_permissions.short_description = '권한'
 
 
