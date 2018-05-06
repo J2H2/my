@@ -20,7 +20,7 @@ class BaseModelAdmin(admin.ModelAdmin):
 
 
 class BasePrefetchModelAdmin(BaseModelAdmin):
-    # inner join 제거를위해 req를 나누어서 하도록함
+    # Separate req for inner join elimination
     list_select_related = ()
     list_prefetch_related = ()
 

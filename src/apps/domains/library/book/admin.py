@@ -9,7 +9,7 @@ class LibraryBookAdmin(BaseModelAdmin):
         (None, {'fields': ('id', 'user',)}),
         ('소유 정보', {'fields': ('own_status', 'own_date',)}),
         ('소유 정보', {'fields': ('read_status', 'read_date',)}),
-        ('관련 날짜', {'fields': ('created', 'last_modified',)}),
+        ('Related dates', {'fields': ('created', 'last_modified',)}),
     )
     readonly_fields = ('id', 'user', 'book', 'created', 'last_modified',)
     list_display = (

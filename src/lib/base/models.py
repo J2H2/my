@@ -4,8 +4,8 @@ from django.db.models import Manager
 
 
 class BaseModel(models.Model):
-    created = models.DateTimeField(auto_now_add=True, editable=False, verbose_name='등록일')
-    last_modified = models.DateTimeField(auto_now=True, editable=False, verbose_name='수정일')
+    created = models.DateTimeField(auto_now_add=True, editable=False, verbose_name='Create date')
+    last_modified = models.DateTimeField(auto_now=True, editable=False, verbose_name='Last modified date')
 
     objects = Manager()
 

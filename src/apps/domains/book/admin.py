@@ -7,9 +7,9 @@ from lib.base.admin import BaseModelAdmin
 class BookAdmin(BaseModelAdmin):
     fieldsets = (
         (None, {'fields': ('id', 'isbn',)}),
-        ('정보', {'fields': ('title', 'authors', 'publisher',)}),
-        ('가격 정보', {'fields': ('price',)}),
-        ('관련 날짜', {'fields': ('pub_date', 'created', 'last_modified',)}),
+        ('Book info', {'fields': ('title', 'authors', 'publisher',)}),
+        ('Price info', {'fields': ('price',)}),
+        ('Related dates', {'fields': ('pub_date', 'created', 'last_modified',)}),
     )
     readonly_fields = ('id', 'created', 'last_modified',)
     list_display = (

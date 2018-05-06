@@ -6,14 +6,14 @@ from .managers import UserManager
 
 
 class User(PermissionsMixin, BaseUserModel):
-    email = models.EmailField(max_length=254, unique=True, verbose_name='이메일', )
+    email = models.EmailField(max_length=254, unique=True, verbose_name='Email', )
 
-    is_active = models.BooleanField(default=True, verbose_name='계정 활성화 여부', )
+    is_active = models.BooleanField(default=True, verbose_name='Active user', )
 
-    is_staff = models.BooleanField(default=False, verbose_name='관리자 여부', )
-    is_superuser = models.BooleanField(default=False, verbose_name='최고관리자 여부', )
+    is_staff = models.BooleanField(default=False, verbose_name='Staff', )
+    is_superuser = models.BooleanField(default=False, verbose_name='Super staff', )
 
-    last_login = models.DateTimeField(blank=True, null=True, editable=False, verbose_name='마지막 로그인')
+    last_login = models.DateTimeField(blank=True, null=True, editable=False, verbose_name='last login date')
 
     USERNAME_FIELD = 'email'
 
@@ -21,5 +21,5 @@ class User(PermissionsMixin, BaseUserModel):
 
     class Meta:
         db_table = 'user'
-        verbose_name = '계정'
-        verbose_name_plural = '계정 리스트'
+        verbose_name = 'User'
+        verbose_name_plural = 'Users'

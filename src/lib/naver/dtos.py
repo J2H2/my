@@ -88,7 +88,7 @@ class NaverBookSearchApiResult(BaseNaverSearchApiResult):
 
     @classmethod
     def _parse_price(cls, price: str) -> int:
-        # 가격에 소수점이 있는 경우가 있음. 부동소수점으로 변경하고 정수로 변환
+        # Sometimes the price has a decimal point. Convert to floating point and convert to integer
         return 0 if price is None else int(float(price))
 
 

@@ -1,4 +1,6 @@
 from allauth import urls as allauth_urls
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
@@ -11,4 +13,5 @@ urlpatterns = [
     path('accounts/', include(allauth_urls)),
 ] + [
     path('api/library/books/', include(book_urls, namespace='library_book')),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+

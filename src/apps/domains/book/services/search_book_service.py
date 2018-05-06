@@ -26,8 +26,8 @@ class SearchBookService:
                     }
                 )
             except OperationalError:
-                # TODO logger 추가
-                # TODO desc 에 mb4형식이 있을 수 있음. desc 정리를 하거나 DB설정을 바꾸거나 해야 함
+                # TODO Add logger
+                # TODO There can be mb4 format in desc. Need to clean up your desc or change DB settings
                 continue
             books.append(book)
 
