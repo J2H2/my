@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from django.db import models
+from django.utils import timezone
 
 from apps.domains.account.models import User
 from apps.domains.book.models import Book
@@ -27,13 +28,13 @@ class UserBook(BaseModel):
     def change_own_status(self, own_status: int):
         self.own_status = own_status
         if self.own_status == OwnStatus.OWN:
-            self.own_date = datetime.now()
+            self.own_date = timezone.now()
         else:
             self.own_date = None
 
     def change_read_status(self, read_status: int):
         self.read_status = read_status
         if self.read_status == ReadStatus.READ:
-            self.read_date = datetime.now()
+            self.read_date = timezone.now()
         else:
             self.read_date = None
