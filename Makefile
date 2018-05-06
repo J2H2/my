@@ -6,7 +6,7 @@ help:
 
 all: install-dev run
 
-install: python-package-install
+install: python-package-install migrate
 
 install-dev: python-package-install-dev
 
