@@ -14,7 +14,7 @@ class OwnStatus(BaseConstant):
     }
 
 
-class ReadingStatus(BaseConstant):
+class ReadStatus(BaseConstant):
     NONE = 0
     READING = 1
     READ = 2
