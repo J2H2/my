@@ -10,4 +10,3 @@ class NewBookService:
         for isbn in isbns:
             books = SearchBookService.find_books(isbn)
             books += SearchBookService.find_by_books_property(books)
-

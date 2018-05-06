@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'raven.contrib.django.raven_compat',
+    'rest_framework',
 
     'allauth',
     'allauth.account',
@@ -31,6 +32,7 @@ INSTALLED_APPS = [
     'apps.domains.home.apps.HomeConfig',
     'apps.domains.account.apps.AccountConfig',
     'apps.domains.book.apps.BookConfig',
+    'apps.domains.library.book.apps.LibraryBookConfig',
 ]
 
 MIDDLEWARE = [
@@ -102,6 +104,12 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}
 
 LANGUAGE_CODE = 'ko-kr'
 
