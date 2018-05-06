@@ -24,8 +24,8 @@ class ApiResponseMixin:
         return Response(data, status=response_code.get_status(), headers=headers)
 
     @staticmethod
-    def make_response_code(status: StatusCode, msg: str=None) -> ResponseCode:
-        return ResponseCode(status_code=status, message=msg)
+    def make_response_code(status: StatusCode, message: str=None) -> ResponseCode:
+        return ResponseCode(status_code=status, message=message)
 
     @classmethod
     def success_response(cls, data=None, response_code: ResponseCode=None) -> Response:
