@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  mariadb:
+  my-mariadb:
     image: mariadb:10.1
     container_name: my-mariadb
     restart: always
@@ -29,6 +29,6 @@ services:
     entrypoint: ./docs/docker/entrypoint.sh
     command: ['./docs/docker/wait_for_mariadb.sh', '/usr/bin/supervisord']
     depends_on:
-      - mariadb
+      - my-mariadb
     links:
-      - mariadb
+      - my-mariadb

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-check_command="mysqladmin ping -h mariadb --port=3306 -u root -proot"
+check_command="mysqladmin ping -h my-mariadb --port=3306 -u root -proot"
 command="$@"
 
 while true; do
