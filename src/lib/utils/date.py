@@ -20,13 +20,19 @@ def convert_to_date_from_8digit(date_string: str):
 def convert_6digit_to_8digit(date_string: str) -> str:
     _8digit_date_string = date_string
     if len(date_string) == 6:
+        # There can be 6-digit data like 201707.
+        # Do not do it correctly and go on trying to make an effort.
+        # It seems to be safe until 2020. 200901 => 2009 / 01 /01 or 2020 / 09 / 01
+        if 2000 <= int(date_string[0:4]) <= date.today().year:
+            _8digit_date_string = date_string + '01'
+
         # There can be 6-digit data like 150906.
         # Do not do it correctly and go on trying to make an effort.
         # Add 2,000 in the first two places, and if it is bigger than the current date, it is a 20th century book.
         # It seems to be safe until this century (21st century).
-
-        if int(date_string[0:2]) + 2000 > date.today().year:
+        elif int(date_string[0:2]) + 2000 > date.today().year:
             _8digit_date_string = '19' + date_string
+
         else:
             _8digit_date_string = '20' + date_string
 
