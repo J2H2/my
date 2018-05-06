@@ -3,7 +3,7 @@ from django.utils.decorators import method_decorator
 from rest_framework.views import APIView
 
 from apps.domains.book.models import Book
-from apps.domains.user_book.repository import UserBookRepository
+from apps.domains.user_book.repositories import UserBookRepository
 from apps.domains.user_book.serializers import UserBookListReqSerializer, UserBookSerializer
 from apps.domains.user_book.services.user_book_own_service import UserBookOwnService
 from apps.domains.user_book.services.user_book_read_service import UserBookReadService

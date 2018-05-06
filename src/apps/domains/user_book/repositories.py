@@ -1,7 +1,7 @@
 from typing import List
 
 from apps.domains.user_book.models import UserBook
-from lib.base.repository import BaseRepository
+from lib.base.repositories import BaseRepository
 
 
 class UserBookRepository(BaseRepository):
