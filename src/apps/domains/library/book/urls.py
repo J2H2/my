@@ -6,8 +6,8 @@ from . import views
 app_name = 'apps.domains.library.book'
 urlpatterns = [
     path('', views.LibraryBookListView.as_view(), name='index'),
-    path('<int:book_id>/', views.LibraryBookByBookIdView.as_view(), name='not-own',),
-    path('isbn/<int:book_id>/', views.LibraryBookByIsbnView.as_view(), name='not-own',),
+    path('<int:book_id>/', views.LibraryBookByBookIdView.as_view(), name='get-by-id',),
+    path('isbn/<int:isbn>/', views.LibraryBookByIsbnView.as_view(), name='get-by-isbn',),
 
     path('<int:book_id>/not-own/', views.OwnView.as_view(), name='not-own', kwargs={'own_status': OwnStatus.NONE}),
     path('<int:book_id>/want/', views.OwnView.as_view(), name='want', kwargs={'own_status': OwnStatus.WANT}),
