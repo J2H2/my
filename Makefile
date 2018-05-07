@@ -39,3 +39,14 @@ run-server:
 # docker
 docker-up:
 	@docker-compose up --build
+
+
+# frontend
+front-up:
+	@cd front && yarn start
+
+front-build:
+	@cd front && yarn build
+
+front-test:
+	@cd front && yarn test
