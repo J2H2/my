@@ -26,6 +26,12 @@ def convert_6digit_to_8digit(date_string: str) -> str:
         if 2000 <= int(date_string[0:4]) <= date.today().year:
             _8digit_date_string = date_string + '01'
 
+        elif 2013 <= int(date_string[0:4]):
+            _8digit_date_string = date_string + '01'
+
+        elif 1913 <= int(date_string[0:4]):
+            _8digit_date_string = date_string + '01'
+
         # There can be 6-digit data like 150906.
         # Do not do it correctly and go on trying to make an effort.
         # Add 2,000 in the first two places, and if it is bigger than the current date, it is a 20th century book.
