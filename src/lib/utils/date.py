@@ -1,5 +1,9 @@
 from datetime import date
 
+from lib.utils.number import is_integer
+
+EIGHT_DIGIT_DATE_MIN = '00010101'
+
 
 def convert_to_date_from_8digit(date_string: str):
     year = int(date_string[0:4])
@@ -18,6 +22,9 @@ def convert_to_date_from_8digit(date_string: str):
 
 
 def convert_6digit_to_8digit(date_string: str) -> str:
+    if not is_integer(date_string):
+        return EIGHT_DIGIT_DATE_MIN
+
     _8digit_date_string = date_string
     if len(date_string) == 6:
         # There can be 6-digit data like 201707.
@@ -46,6 +53,9 @@ def convert_6digit_to_8digit(date_string: str) -> str:
 
 
 def convert_4digit_to_8digit(date_string: str) -> str:
+    if not is_integer(date_string):
+        return EIGHT_DIGIT_DATE_MIN
+
     _date_string = date_string
     if len(_date_string) == 4:
         # There can be data with 4 digits like 2015
