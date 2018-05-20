@@ -44,3 +44,8 @@ make install
 ```
 make run
 ```
+
+
+```
+brew install node
+```
