@@ -1,7 +1,7 @@
 from django.urls import path
 
 from apps.domains.library.book.constants import OwnStatus, ReadStatus
-from . import views
+from ..views import api as views
 
 app_name = 'apps.domains.library.book'
 urlpatterns = [

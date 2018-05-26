@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Library{% endblock %}
+
+{% block script %}
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid">
+    <div id="list">
+      {% for user_book in user_books %}
+        <img src="{{ user_book.book.cover_s }}" alt="{{ user_book.book.title }}" class="rounded img-fluid"/>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
+

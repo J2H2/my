@@ -13,5 +13,9 @@ class LibraryBookRepository(BaseRepository):
         return LibraryBook.objects.filter(user=user)[offset:offset + limit]
 
     @classmethod
+    def find_all_by_user(cls, user: User) -> List[LibraryBook]:
+        return LibraryBook.objects.filter(user=user)
+
+    @classmethod
     def get_by_user_and_book_id(cls, user: User, book_id: int) -> LibraryBook:
         return LibraryBook.objects.get(user=user, book_id=book_id)
