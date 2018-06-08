@@ -1,3 +1,4 @@
+import re
 from datetime import date
 
 from lib.utils.number import is_integer
@@ -5,7 +6,35 @@ from lib.utils.number import is_integer
 EIGHT_DIGIT_DATE_MIN = '00010101'
 
 
-def convert_to_date_from_8digit(date_string: str):
+def parse_date(date_string):
+    if date_string == '' or date_string is None:
+        return date.min
+
+    if is_yyyy_mm_dd(date_string):
+        return convert_to_date_from_yyyy_mm_dd(date_string)
+
+    if len(date_string) == 8:
+        _8digit_date_string = date_string
+    elif len(date_string) == 4:
+        _8digit_date_string = convert_4digit_to_8digit(date_string)
+    elif len(date_string) == 6:
+        _8digit_date_string = convert_6digit_to_8digit(date_string)
+    else:
+        raise NotImplementedError()
+
+    return convert_to_date_from_8digit(_8digit_date_string)
+
+
+def is_yyyy_mm_dd(date_string: str) -> bool:
+    return re.match('^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$', date_string) is not None
+
+
+def convert_to_date_from_yyyy_mm_dd(date_string: str) -> date:
+    splited_str = date_string.split('-')
+    return date(year=int(splited_str[0]), month=int(splited_str[1]), day=int(splited_str[2]))
+
+
+def convert_to_date_from_8digit(date_string: str) -> date:
     year = int(date_string[0:4])
     if year is 0:
         year = 1

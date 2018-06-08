@@ -3,7 +3,8 @@ from typing import Type
 
 from lib.naver.exceptions import InvalidBookData, InvalidItemData
 from lib.utils.book import validate_isbn
-from lib.utils.date import convert_4digit_to_8digit, convert_6digit_to_8digit, convert_to_date_from_8digit
+from lib.utils.date import convert_4digit_to_8digit, convert_6digit_to_8digit, convert_to_date_from_8digit, is_yyyy_mm_dd, \
+    convert_to_date_from_yyyy_mm_dd
 from lib.utils.string import clean_tag
 
 
@@ -78,11 +79,17 @@ class NaverBookSearchApiResult(BaseNaverSearchApiResult):
         if _date_string == '' or _date_string is None:
             return date.min
 
-        _8digit_date_string = _date_string
-        if len(_date_string) == 4:
+        if is_yyyy_mm_dd(_date_string):
+            return convert_to_date_from_yyyy_mm_dd(_date_string)
+
+        if len(_date_string) == 8:
+            _8digit_date_string = _date_string
+        elif len(_date_string) == 4:
             _8digit_date_string = convert_4digit_to_8digit(_date_string)
         elif len(date_string) == 6:
             _8digit_date_string = convert_6digit_to_8digit(_date_string)
+        else:
+            raise NotImplementedError()
 
         return convert_to_date_from_8digit(_8digit_date_string)
 
