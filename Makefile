@@ -40,6 +40,9 @@ run-server:
 docker-up:
 	@docker-compose up --build
 
+docker-logs:
+	@docker ps -a -q -f name=my-www | awk '{print $1}' | xargs docker logs -f
+
 
 # frontend
 front-up:
