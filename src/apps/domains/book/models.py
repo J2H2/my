@@ -32,13 +32,16 @@ class Book(BaseModel):
     pub_date = models.DateField(verbose_name='publish date', )
 
     front_cover = models.ForeignKey(
-        BookImage, on_delete=models.PROTECT, related_name='book_front_cover', null=True, default=None, verbose_name='Front cover image',
+        BookImage, on_delete=models.PROTECT, related_name='book_front_cover',
+        null=True, blank=True, default=None, verbose_name='Front cover image',
     )
     spine = models.ForeignKey(
-        BookImage, on_delete=models.PROTECT, related_name='book_spine', null=True, default=None, verbose_name='Spine image',
+        BookImage, on_delete=models.PROTECT, related_name='book_spine',
+        null=True, blank=True, default=None, verbose_name='Spine image',
     )
     back_cover = models.ForeignKey(
-        BookImage, on_delete=models.PROTECT, related_name='book_back_cover', null=True, default=None, verbose_name='Back cover image',
+        BookImage, on_delete=models.PROTECT, related_name='book_back_cover',
+        null=True, blank=True, default=None, verbose_name='Back cover image',
     )
 
     cover_url = models.TextField(verbose_name='Cover Small', )
