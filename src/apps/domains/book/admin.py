@@ -8,6 +8,7 @@ class BookAdmin(BaseModelAdmin):
     fieldsets = (
         (None, {'fields': ('id', 'isbn',)}),
         ('Book info', {'fields': ('title', 'authors', 'publisher',)}),
+        ('Covers', {'fields': ('cover_url', 'front_cover', 'spine', 'back_cover', )}),
         ('Price info', {'fields': ('price',)}),
         ('Related dates', {'fields': ('pub_date', 'created', 'last_modified',)}),
     )
