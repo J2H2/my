@@ -17,7 +17,7 @@ class SearchBookService:
                     isbn=item.isbn,
                     defaults={
                         'title': item.title,
-                        'cover_s': item.image,
+                        'cover_url': item.image,
                         'authors': item.author,
                         'publisher': item.publisher,
                         'description': item.description,
