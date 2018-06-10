@@ -44,12 +44,12 @@ class Book(BaseModel):
         null=True, blank=True, default=None, verbose_name='Back cover image',
     )
 
-    cover_url = models.TextField(verbose_name='Cover Small', )
+    cover_url = models.TextField(null=True, blank=True, default=None, verbose_name='Cover Small', )
     save_cover = models.BooleanField(default=False, verbose_name='Cover file is saved', )
 
-    description = models.TextField(verbose_name='Description', )
+    description = models.TextField(null=True, blank=True, default=None, verbose_name='Description', )
 
-    price = models.IntegerField(verbose_name='Price', )
+    price = models.IntegerField(null=True, blank=True, default=None, verbose_name='Price', )
 
     class Meta:
         db_table = 'book'
