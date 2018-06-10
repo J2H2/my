@@ -3,15 +3,55 @@
 {% block title %}Library{% endblock %}
 
 {% block script %}
+  <script>
+    function req_own(book_id) {
+      fetch('/api/library/books/' + book_id + '/own/', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Token {{ token }}',
+        }
+      })
+    }
+  </script>
 {% endblock %}
 
 {% block content %}
   <div class="container-fluid">
-    <div id="list">
+    <ul>
       {% for user_book in user_books %}
-        <img src="{{ user_book.book.cover_s }}" alt="{{ user_book.book.title }}" class="rounded img-fluid"/>
+        <li class="media float-left m-1">
+          <img src="{{ user_book.book.cover_url }}" alt="{{ user_book.book.title }}" class="align-self-start m-1 border rounded img-fluid"/>
+          <div class="media-body">
+            <div class="btn-group">
+              <button type="button" class="btn btn-light">N</button>
+              <button type="button" class="btn btn-light">W</button>
+              <button type="button" class="btn btn-light">O</button>
+            </div>
+          </div>
+
+        </li>
       {% endfor %}
-    </div>
+    </ul>
+    <ul>
+      {% for book in books %}
+        <li class="float-left m-1 card" style="width: 150px; height: 300px;">
+          <img src="{{ book.cover_url }}" alt="{{ book.title }}" class="card-img-top"/>
+          <div>
+            <div class="card-title"
+                 style="word-break:break-all;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden;">
+              {{ book.title }}
+            </div>
+            <div class="btn-group">
+              <button type="button" class="btn btn-light js-not-btn">N</button>
+              <button type="button" class="btn btn-light js-want-btn">W</button>
+              <button type="button" class="btn btn-light js-own-btn" onclick="req_own({{ book.id }});">O</button>
+            </div>
+          </div>
+
+        </li>
+      {% endfor %}
+    </ul>
   </div>
 {% endblock %}
 
