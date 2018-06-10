@@ -10,10 +10,6 @@ class BaseModelAdmin(admin.ModelAdmin):
         del actions['delete_selected']
         return actions
 
-    def has_add_permission(self, request) -> bool:
-        # Disable add
-        return False
-
     def has_delete_permission(self, request, obj=None) -> bool:
         # Disable delete
         return False
