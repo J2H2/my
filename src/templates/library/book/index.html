@@ -18,40 +18,42 @@
 
 {% block content %}
   <div class="container-fluid">
-    <ul>
+    <div class="card-columns">
       {% for user_book in user_books %}
-        <li class="media float-left m-1">
-          <img src="{{ user_book.book.cover_url }}" alt="{{ user_book.book.title }}" class="align-self-start m-1 border rounded img-fluid"/>
-          <div class="media-body">
-            <div class="btn-group">
-              <button type="button" class="btn btn-light">N</button>
-              <button type="button" class="btn btn-light">W</button>
-              <button type="button" class="btn btn-light">O</button>
+        {% with user_book.book as book %}
+          <div class="card border-dark mt-3">
+            <img src="{{ book.cover_url }}" alt="{{ book.title }}" class="card-img-top"/>
+            <div class="card-header bg-transparent"><h5 class="card-title">{{ book.title }}</h5></div>
+
+            <div class="btn-group bg-transparent" style="width: 100%; margin: 0px;">
+              <button type="button" class="btn btn-light btn-block" style="width: 100%; margin: 0;">Not</button>
+              <button type="button" class="btn btn-light btn-block" style="width: 100%; margin: 0;">Want</button>
+              <button type="button" class="btn btn-light btn-block" style="width: 100%; margin: 0;" onclick="req_own({{ book.id }});">Own
+              </button>
             </div>
           </div>
-
-        </li>
+        {% endwith %}
       {% endfor %}
-    </ul>
-    <ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="card-columns">
       {% for book in books %}
-        <li class="float-left m-1 card" style="width: 150px; height: 300px;">
+        <div class="card border-dark mt-3">
           <img src="{{ book.cover_url }}" alt="{{ book.title }}" class="card-img-top"/>
-          <div>
-            <div class="card-title"
-                 style="word-break:break-all;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;overflow:hidden;">
-              {{ book.title }}
-            </div>
-            <div class="btn-group">
-              <button type="button" class="btn btn-light js-not-btn">N</button>
-              <button type="button" class="btn btn-light js-want-btn">W</button>
-              <button type="button" class="btn btn-light js-own-btn" onclick="req_own({{ book.id }});">O</button>
-            </div>
+          <div class="card-header bg-transparent"><h5 class="card-title">{{ book.title }}</h5></div>
+          <div class="card-body">
+            <small class="text-muted">{{ book.isbn }}</small>
           </div>
-
-        </li>
+          <div class="btn-group bg-transparent" style="width: 100%; margin: 0px;">
+            <button type="button" class="btn btn-light btn-block" style="width: 100%; margin: 0;">Not</button>
+            <button type="button" class="btn btn-light btn-block" style="width: 100%; margin: 0;">Want</button>
+            <button type="button" class="btn btn-light btn-block" style="width: 100%; margin: 0;" onclick="req_own({{ book.id }});">Own
+            </button>
+          </div>
+        </div>
       {% endfor %}
-    </ul>
+    </div>
   </div>
 {% endblock %}
 
